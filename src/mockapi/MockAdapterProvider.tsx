@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { authApiMocks } from './api/auth-api';
+import { sideDataApiMocks } from './api/side-data'
 import ExtendedMockAdapter from './ExtendedMockAdapter';
 
 const baseURL = '/mock-api';
@@ -21,7 +22,7 @@ function MockAdapterProvider(props: MockAdapterProviderProps) {
   const isInitialMount = useRef(true);
   useEffect(() => {
     const setupAllMocks = () => {
-      [authApiMocks].forEach((mockSetup) => {
+      [authApiMocks, sideDataApiMocks].forEach((mockSetup) => {
         mockSetup(mock);
       });
     };

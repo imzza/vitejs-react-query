@@ -1,11 +1,11 @@
 import Checkbox from '../components/forms/Checkbox'
 import TextInput from '../components/forms/TextInput'
-// import NumberInput from '../components/forms/NumberInput'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Stack, Box } from '@mui/material'
+import { Stack, Box } from '@mui/material'
 import LoadingButton from '../components/LoadingButton'
-
+import Autocomplete from '../components/forms/Autocomplete'
+import ComboBox from '../components/forms/ComboBox'
 import z from 'zod'
 
 const formSchema = z.object({
@@ -14,11 +14,12 @@ const formSchema = z.object({
     checkbox: z.boolean().refine((val) => val === true, {
         message: 'Checkbox is required',
     }),
+    state: z.array(z.string()).min(1, {message: "Please select atlease 1 select"}),
+    select: z.string().min(1, {message: 'Select is required'}),
     // amount: z.preprocess(
     //     (val) => (val === null ? undefined : val),
     //     z.number().min(1, 'Age is required and must be a positive number')
     // ),
-
     amount: z.preprocess(
         (val) => (val === null ? undefined : Number(val)),
         z
@@ -40,6 +41,8 @@ export default function HomePage() {
             email: '',
             checkbox: false,
             amount: '',
+            state: ['AK'],
+            select: ''
         },
         criteriaMode: 'all',
         mode: 'onChange',
@@ -84,10 +87,34 @@ export default function HomePage() {
                         placeholder="Enter your email"
                         fullWidth
                     />
+                    <Autocomplete
+                        name="state"
+                        control={methods.control}
+                        label="State"
+                        options={[
+                            { label: 'Alabama', value: 'AL' },
+                            { label: 'Alaska', value: 'AK' },
+                            { label: 'Arizona', value: 'AZ' },
+                            { label: 'Arkansas', value: 'AR' },
+                            { label: 'California', value: 'CA' },
+                        ]}
+                    />
+                    <ComboBox
+                        name="select"
+                        control={methods.control}
+                        label="ComboBox"
+                        options={[
+                            { label: 'Alabama', value: 'AL' },
+                            { label: 'Alaska', value: 'AK' },
+                            { label: 'Arizona', value: 'AZ' },
+                            { label: 'Arkansas', value: 'AR' },
+                            { label: 'California', value: 'CA' },
+                        ]}
+                    />
                     <Checkbox
                         name="checkbox"
                         control={methods.control}
-                        label="Checkbox"
+                        label="Accept terms and condition"
                         sx={{ alignSelf: 'flex-start' }}
                     />
                     <LoadingButton label="Submit" loading={false} sx={{ width: '200px' }} />

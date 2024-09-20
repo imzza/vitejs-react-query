@@ -1,19 +1,19 @@
-// import axios from 'axios'
+import axios from 'axios'
 // import { LoginInput } from '../pages/login.page'
 // import { RegisterInput } from '../pages/register.page'
 // import { GenericResponse, ILoginResponse, IUserResponse } from './types'
 
-// const BASE_URL = 'http://localhost:8000/api/'
+const BASE_URL = 'http://localhost:8000/api/'
 
-// export const authApi = axios.create({
-//     baseURL: BASE_URL,
-//     withCredentials: true,
-//     headers: {
-//         common: {
-//             'Content-Type': 'application/json',
-//         },
-//     },
-// })
+export const api = axios.create({
+    baseURL: BASE_URL,
+    withCredentials: true,
+    headers: {
+        common: {
+            'Content-Type': 'application/json',
+        },
+    },
+})
 
 // export const refreshAccessToken = async () => {
 //     const response = await authApi.get<ILoginResponse>('auth/refresh')
@@ -43,3 +43,9 @@
 //     const response = await authApi.get<IUserResponse>('mock-api/auth/user')
 //     return response.data
 // }
+
+export const getStates = async () => {
+    return (await axios.get('/mock-api/states')).data
+}
+
+
