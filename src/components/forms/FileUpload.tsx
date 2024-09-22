@@ -19,10 +19,12 @@ const CustomBox = styled(Box)({
         borderRadius: '2rem',
         // boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
         paddingTop: '1rem',
+        width: '100%',
     },
     '&.MuiBox-root:hover, &.MuiBox-root.dragover': {
         opacity: 0.6,
     },
+    '& .MuiStack-root': { width: '100%' },
 })
 
 export default function FileUpload({ control, limit, multiple, name }: FileUploadProps) {
