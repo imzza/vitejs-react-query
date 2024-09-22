@@ -8,14 +8,19 @@ import _ from 'lodash'
 // import jwtDecode from 'jwt-decode'
 // import { PartialDeep } from 'type-fest'
 // import axios, { AxiosRequestConfig } from 'axios'
-// import mockApi from '../mock-api.json'
+import mockApi from '../mock-api.json'
 import MockAdapter from 'axios-mock-adapter'
 
 
-// let usersApi = mockApi.components.examples.auth_users.value as unknown as UserAuthType[]
+interface Option {
+    label: string
+    value: string
+}
+
+let statesApi = mockApi.components.examples.states.value as unknown as Option[]
 
 export const sideDataApiMocks = (mock: MockAdapter) => {
-    mock.onGet('/states').reply((config) => {
-        return [200, { error }]
+    mock.onGet('/states').reply(() => {
+        return [200, statesApi]
     })
 }

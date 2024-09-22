@@ -27,7 +27,10 @@
           "general": {
             "gender": "Male",
             "birthday": "February 30th, 1974",
-            "locations": ["London, UK", "New York, USA"],
+            "locations": [
+              "London, UK",
+              "New York, USA"
+            ],
             "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget pharetra felis, sed ullamcorper dui. Sed et elementum neque. Vestibulum pellente viverra ultrices. Etiam justo augue, vehicula ac gravida a, interdum sit amet nisl. Integer vitae nisi id nibh dictum mollis in vitae tortor."
           },
           "work": {
@@ -46,9 +49,17 @@
           },
           "contact": {
             "address": "Ut pharetra luctus est quis sodales. Duis nisi tortor, bibendum eget tincidunt, aliquam ac elit. Mauris nec euismod odio.",
-            "tel": ["+6 555 6600", "+9 555 5255"],
-            "websites": ["withinpixels.com"],
-            "emails": ["mail@withinpixels.com", "mail@creapond.com"]
+            "tel": [
+              "+6 555 6600",
+              "+9 555 5255"
+            ],
+            "websites": [
+              "withinpixels.com"
+            ],
+            "emails": [
+              "mail@withinpixels.com",
+              "mail@creapond.com"
+            ]
           },
           "groups": [
             {
@@ -123,7 +134,11 @@
                 "layout": {},
                 "theme": {}
               },
-              "shortcuts": ["apps.calendar", "apps.mailbox", "apps.contacts"]
+              "shortcuts": [
+                "apps.calendar",
+                "apps.mailbox",
+                "apps.contacts"
+              ]
             }
           },
           {
@@ -163,6 +178,210 @@
                 "apps.tasks"
               ]
             }
+          }
+        ]
+      },
+      "states": {
+        "value": [
+          {
+            "label": "Alabama",
+            "value": "AL"
+          },
+          {
+            "label": "Alaska",
+            "value": "AK"
+          },
+          {
+            "label": "Arizona",
+            "value": "AZ"
+          },
+          {
+            "label": "Arkansas",
+            "value": "AR"
+          },
+          {
+            "label": "California",
+            "value": "CA"
+          },
+          {
+            "label": "Colorado",
+            "value": "CO"
+          },
+          {
+            "label": "Connecticut",
+            "value": "CT"
+          },
+          {
+            "label": "Delaware",
+            "value": "DE"
+          },
+          {
+            "label": "Florida",
+            "value": "FL"
+          },
+          {
+            "label": "Georgia",
+            "value": "GA"
+          },
+          {
+            "label": "Hawaii",
+            "value": "HI"
+          },
+          {
+            "label": "Idaho",
+            "value": "ID"
+          },
+          {
+            "label": "Illinois",
+            "value": "IL"
+          },
+          {
+            "label": "Indiana",
+            "value": "IN"
+          },
+          {
+            "label": "Iowa",
+            "value": "IA"
+          },
+          {
+            "label": "Kansas",
+            "value": "KS"
+          },
+          {
+            "label": "Kentucky",
+            "value": "KY"
+          },
+          {
+            "label": "Louisiana",
+            "value": "LA"
+          },
+          {
+            "label": "Maine",
+            "value": "ME"
+          },
+          {
+            "label": "Maryland",
+            "value": "MD"
+          },
+          {
+            "label": "Massachusetts",
+            "value": "MA"
+          },
+          {
+            "label": "Michigan",
+            "value": "MI"
+          },
+          {
+            "label": "Minnesota",
+            "value": "MN"
+          },
+          {
+            "label": "Mississippi",
+            "value": "MS"
+          },
+          {
+            "label": "Missouri",
+            "value": "MO"
+          },
+          {
+            "label": "Montana",
+            "value": "MT"
+          },
+          {
+            "label": "Nebraska",
+            "value": "NE"
+          },
+          {
+            "label": "Nevada",
+            "value": "NV"
+          },
+          {
+            "label": "New Hampshire",
+            "value": "NH"
+          },
+          {
+            "label": "New Jersey",
+            "value": "NJ"
+          },
+          {
+            "label": "New Mexico",
+            "value": "NM"
+          },
+          {
+            "label": "New York",
+            "value": "NY"
+          },
+          {
+            "label": "North Carolina",
+            "value": "NC"
+          },
+          {
+            "label": "North Dakota",
+            "value": "ND"
+          },
+          {
+            "label": "Ohio",
+            "value": "OH"
+          },
+          {
+            "label": "Oklahoma",
+            "value": "OK"
+          },
+          {
+            "label": "Oregon",
+            "value": "OR"
+          },
+          {
+            "label": "Pennsylvania",
+            "value": "PA"
+          },
+          {
+            "label": "Rhode Island",
+            "value": "RI"
+          },
+          {
+            "label": "South Carolina",
+            "value": "SC"
+          },
+          {
+            "label": "South Dakota",
+            "value": "SD"
+          },
+          {
+            "label": "Tennessee",
+            "value": "TN"
+          },
+          {
+            "label": "Texas",
+            "value": "TX"
+          },
+          {
+            "label": "Utah",
+            "value": "UT"
+          },
+          {
+            "label": "Vermont",
+            "value": "VT"
+          },
+          {
+            "label": "Virginia",
+            "value": "VA"
+          },
+          {
+            "label": "Washington",
+            "value": "WA"
+          },
+          {
+            "label": "West Virginia",
+            "value": "WV"
+          },
+          {
+            "label": "Wisconsin",
+            "value": "WI"
+          },
+          {
+            "label": "Wyoming",
+            "value": "WY"
           }
         ]
       }

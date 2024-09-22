@@ -1,7 +1,5 @@
 import axios from 'axios'
-// import { LoginInput } from '../pages/login.page'
-// import { RegisterInput } from '../pages/register.page'
-// import { GenericResponse, ILoginResponse, IUserResponse } from './types'
+import { useQuery } from '@tanstack/react-query'
 
 const BASE_URL = 'http://localhost:8000/api/'
 
@@ -14,6 +12,14 @@ export const api = axios.create({
         },
     },
 })
+// https://github.com/codegenixdev/react-hook-form-mui-zod-boilerplate/blob/main/src/users/services/mutations.ts
+
+// Dynamic Forms
+// https://github.com/codegenixdev/dynamic-form/blob/main/src/App.tsx
+// https://www.youtube.com/watch?v=HSr7pMSjC1I
+// https://www.youtube.com/watch?v=3e-higRXoaM
+
+//github.com/ObaidKhan625/2FA/blob/main/frontend/src/pages/TwoFARegister/TwoFARegister.js
 
 // export const refreshAccessToken = async () => {
 //     const response = await authApi.get<ILoginResponse>('auth/refresh')
@@ -44,8 +50,15 @@ export const api = axios.create({
 //     return response.data
 // }
 
-export const getStates = async () => {
-    return (await axios.get('/mock-api/states')).data
+export const getStates = () => {
+    return api.get('/mock-api/states')
 }
 
-
+export const useStates = () => {
+    return useQuery({
+        queryKey: ['states'],
+        queryFn: () => {
+            return api.get('/mock-api/states')
+        }
+    })
+}

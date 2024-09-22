@@ -7,7 +7,7 @@ import { Autocomplete as MuiAutocomplete, Box, Checkbox, TextField } from '@mui/
 interface AutocompleteProps extends FieldValues {
     name: string
     label: string
-    options: { value: any; label: string }[]
+    options?: { value: any; label: string }[]
 }
 
 export default function Autocomplete({ control, name, options, label }: AutocompleteProps) {
