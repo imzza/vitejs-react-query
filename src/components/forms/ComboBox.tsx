@@ -1,4 +1,4 @@
-import {TextField, Autocomplete} from '@mui/material';
+import { TextField, Autocomplete, styled } from '@mui/material'
 import {Controller, FieldValues} from 'react-hook-form';
 
 interface ComboBoxProps extends FieldValues {
@@ -6,7 +6,11 @@ interface ComboBoxProps extends FieldValues {
     label: string
     options: { label: string; value: string }[]
 }
-
+const StyledTextField = styled(TextField)(() => ({
+    '& .MuiFormHelperText-root': {
+        marginLeft: '0px',
+    },
+}))
 
 export default function ComboBox({control, name, label, options}: ComboBoxProps) {
   return (
@@ -22,11 +26,17 @@ export default function ComboBox({control, name, label, options}: ComboBoxProps)
                             }) ?? null
                           : null
                   }
-                  sx={{width: '100%'}}
+                  sx={{ width: '100%' }}
                   disablePortal
                   options={options || []}
                   renderInput={(params) => (
-                      <TextField {...params} inputRef={ref} label={label} error={!!error} helperText={error?.message} />
+                      <StyledTextField
+                          {...params}
+                          inputRef={ref}
+                          label={label}
+                          error={!!error}
+                          helperText={error?.message}
+                      />
                   )}
                   onChange={(_, newValue) => onChange(newValue?.value)}
               />

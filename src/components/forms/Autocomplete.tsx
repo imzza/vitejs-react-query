@@ -2,13 +2,19 @@ import { Controller, FieldValues } from 'react-hook-form'
 
 import CheckBoxIcon from '@mui/icons-material/CheckBox'
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank'
-import { Autocomplete as MuiAutocomplete, Box, Checkbox, TextField } from '@mui/material'
+import { styled, Autocomplete as MuiAutocomplete, Box, Checkbox, TextField } from '@mui/material'
 
 interface AutocompleteProps extends FieldValues {
     name: string
     label: string
     options?: { value: any; label: string }[]
 }
+
+const StyledTextField = styled(TextField)(() => ({
+    '& .MuiFormHelperText-root': {
+        marginLeft: '0px',
+    },
+}))
 
 export default function Autocomplete({ control, name, options, label }: AutocompleteProps) {
     return (
@@ -26,21 +32,18 @@ export default function Autocomplete({ control, name, options, label }: Autocomp
                     }}
                     disableCloseOnSelect
                     multiple
-                    sx={{width: '100%'}}
+                    sx={{ width: '100%' }}
                     renderInput={(params) => (
-                        <TextField
+                        <StyledTextField
                             {...params}
                             fullWidth
                             inputRef={ref}
                             error={!!error}
                             helperText={error?.message}
                             label={label}
-                            sx={{'& .MuiFormHelperText-root': {
-                                marginLeft: '0px',
-                            }}}
                         />
                     )}
-                    renderOption={({key, ...props}, option, { selected }) => (
+                    renderOption={({ key, ...props }, option, { selected }) => (
                         <Box component="li" key={key} {...props}>
                             <Checkbox
                                 icon={<CheckBoxOutlineBlankIcon />}
