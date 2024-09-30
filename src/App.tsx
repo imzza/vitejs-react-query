@@ -15,10 +15,9 @@ const queryClient = new QueryClient({
         },
     },
 })
+const defaultTheme = createTheme()
 
 export default function App() {
-    const defaultTheme = createTheme()
-
     return (
         <MockAdapterProvider>
             <QueryClientProvider client={queryClient}>

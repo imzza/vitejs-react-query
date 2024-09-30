@@ -14,7 +14,7 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Slide from '@mui/material/Slide'
-import {NavLink} from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 
 // const pages = ['Products', 'Pricing', 'Blog']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
@@ -28,7 +28,6 @@ const pages = [
     { name: 'Users', link: '/users' },
     // { name: 'Logout', link: '/logout' },
 ]
-
 
 interface Props {
     /**
@@ -157,7 +156,10 @@ function ResponsiveAppBar() {
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
                                 <NavLink to={page.link} key={page.link} style={{ textDecoration: 'none' }}>
-                                    <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                                    <Button
+                                        onClick={handleCloseNavMenu}
+                                        sx={{ my: 2, color: 'white', display: 'block' }}
+                                    >
                                         {page.name}
                                     </Button>
                                 </NavLink>

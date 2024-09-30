@@ -2,7 +2,7 @@ import Checkbox from '../components/forms/Checkbox'
 import TextInput from '../components/forms/TextInput'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Stack, Box } from '@mui/material'
+import { Stack, Box, Typography } from '@mui/material'
 import LoadingButton from '../components/LoadingButton'
 import Autocomplete from '../components/forms/Autocomplete'
 import ComboBox from '../components/forms/ComboBox'
@@ -71,7 +71,9 @@ export default function HomePage() {
 
     return (
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <h1>Home Page</h1>
+            <Typography variant="h3" sx={{ textAlign: 'center' }} color="primary">
+                Home Page
+            </Typography>
             <Box
                 sx={{
                     display: 'flex',
