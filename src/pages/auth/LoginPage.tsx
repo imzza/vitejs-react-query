@@ -1,20 +1,32 @@
-import axios from 'axios';
 import { useEffect } from 'react';
+import { useLoginMutation } from '../../api/axios';
 
 export default function LoginPage() {
+  const {mutate: login, isPending: isLoading, isError, isSuccess, error} = useLoginMutation()
+
   useEffect(() => {
-    const signIn = async () => {
-      try {
-        const response = await axios.post('/mock-api/auth/sign-in', {
-          email: 'admin@fusetheme.com',
-          password: 'admin',
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error('Error signing in:', error);
+    login({
+      email: 'admin@fusetheme.com',
+      password: 'admin',
+    }, {
+      onSuccess: (data) => {
+        console.log(`onSuccess Callback: ${JSON.stringify(data)}`)
+      },
+      onError: (error) => {
+        console.log(`onError Callback: ${JSON.stringify(error)}`)
       }
-    };
-    signIn();
+    })
   }, []);
-  return <h1>Login Page</h1>;
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log("Success")
+    }
+  }, [isSuccess])
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  return <h1>Login Page {isError ? error.message : null} {isSuccess ? "Success" : null}</h1>;
 }

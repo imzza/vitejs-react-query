@@ -11,7 +11,7 @@ import Switch from '../components/forms/Switch'
 import PasswordInput from '../components/forms/PasswordInput'
 import FileUpload from '../components/forms/FileUpload'
 
-import { useStates } from '../api/axios'
+import { useStatesQuery } from '../api/axios'
 
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
@@ -43,7 +43,7 @@ type FormSchema = z.infer<typeof formSchema>
 
 export default function HomePage() {
 
-    const { data: states } = useStates()
+    const { data: states } = useStatesQuery()
 
     const methods = useForm<FormSchema>({
         resolver: zodResolver(formSchema),

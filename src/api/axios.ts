@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
+
+// https://tanstack.com/query/latest/docs/framework/react/guides/mutations
 
 const BASE_URL = 'http://localhost:8000/api/'
 
@@ -58,11 +60,40 @@ export const getStates = () => {
     return api.get('/mock-api/states')
 }
 
-export const useStates = () => {
+export const useStatesQuery = () => {
     return useQuery({
         queryKey: ['states'],
         queryFn: () => {
             return api.get('/mock-api/states')
         }
+    })
+}
+
+export const useLoginMutation = () => {
+    return useMutation({
+        mutationFn: (data: any) => {
+            return api.post('/mock-api/auth/sign-in', data)
+        },
+        onSuccess: (data) => {
+            console.log(`onSuccess default Callback: ${JSON.stringify(data)}`)
+        },
+        onError: (error) => {
+            console.log(`onError default Callback: ${JSON.stringify(error)}`)
+        }
+    })
+}
+
+export const useRegisterMutation = () => {
+    return useMutation({
+        mutationFn: (data: any) => {
+            return api.post('/mock-api/auth/sign-up', data)
+        },
+        onSuccess(data, variables, context) {
+            console.log(`onSuccess default Callback: ${JSON.stringify(data)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`)
+        },
+        onError(error, variables, context) {
+            console.log(`onError default Callback: ${JSON.stringify(error)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`)
+        },
+        // mutationKey: ['register'],
     })
 }
