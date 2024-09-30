@@ -14,10 +14,21 @@ import MenuItem from '@mui/material/MenuItem'
 import AdbIcon from '@mui/icons-material/Adb'
 import useScrollTrigger from '@mui/material/useScrollTrigger'
 import Slide from '@mui/material/Slide'
+import {NavLink} from "react-router-dom"
 
-
-const pages = ['Products', 'Pricing', 'Blog']
+// const pages = ['Products', 'Pricing', 'Blog']
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
+
+const pages = [
+    { name: 'Home', link: '/' },
+    { name: 'About', link: '/about' },
+    { name: 'Contact', link: '/contact' },
+    { name: 'Forms', link: '/forms' },
+    { name: 'Products', link: '/context' },
+    { name: 'Users', link: '/users' },
+    // { name: 'Logout', link: '/logout' },
+]
+
 
 interface Props {
     /**
@@ -44,8 +55,6 @@ function HideOnScroll(props: Props) {
     )
 }
 
-
-
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null)
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
@@ -68,7 +77,7 @@ function ResponsiveAppBar() {
     return (
         <>
             <HideOnScroll />
-            <AppBar position="static">
+            <AppBar>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -118,8 +127,10 @@ function ResponsiveAppBar() {
                                 sx={{ display: { xs: 'block', md: 'none' } }}
                             >
                                 {pages.map((page) => (
-                                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                        <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                                    <MenuItem key={page.link} onClick={handleCloseNavMenu}>
+                                        <NavLink to={page.link}>
+                                            <Typography textAlign="center">{page.name}</Typography>
+                                        </NavLink>
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -145,13 +156,11 @@ function ResponsiveAppBar() {
                         </Typography>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             {pages.map((page) => (
-                                <Button
-                                    key={page}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    {page}
-                                </Button>
+                                <NavLink to={page.link} key={page.link} style={{ textDecoration: 'none' }}>
+                                    <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: 'white', display: 'block' }}>
+                                        {page.name}
+                                    </Button>
+                                </NavLink>
                             ))}
                         </Box>
                         <Box sx={{ flexGrow: 0 }}>

@@ -36,13 +36,12 @@ const formSchema = z.object({
     ),
     switch: z.boolean().refine((val) => val === true, { message: 'Switch is required' }),
     password: z.string().min(1, { message: 'Password is required' }),
-    image: z.instanceof(File, {message: "Image file is required"}),
+    image: z.instanceof(File, { message: 'Image file is required' }),
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export default function HomePage() {
-
     const { data: states } = useStatesQuery()
 
     const methods = useForm<FormSchema>({
@@ -56,7 +55,7 @@ export default function HomePage() {
             select: '',
             switch: false,
             password: '',
-            image: '' as unknown as File
+            image: '' as unknown as File,
         },
         criteriaMode: 'all',
         mode: 'onChange',

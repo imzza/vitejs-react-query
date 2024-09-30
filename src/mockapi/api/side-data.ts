@@ -11,7 +11,6 @@ import _ from 'lodash'
 import mockApi from '../mock-api.json'
 import MockAdapter from 'axios-mock-adapter'
 
-
 interface Option {
     label: string
     value: string

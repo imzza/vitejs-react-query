@@ -65,7 +65,7 @@ export const useStatesQuery = () => {
         queryKey: ['states'],
         queryFn: () => {
             return api.get('/mock-api/states')
-        }
+        },
     })
 }
 
@@ -79,7 +79,7 @@ export const useLoginMutation = () => {
         },
         onError: (error) => {
             console.log(`onError default Callback: ${JSON.stringify(error)}`)
-        }
+        },
     })
 }
 
@@ -89,10 +89,14 @@ export const useRegisterMutation = () => {
             return api.post('/mock-api/auth/sign-up', data)
         },
         onSuccess(data, variables, context) {
-            console.log(`onSuccess default Callback: ${JSON.stringify(data)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`)
+            console.log(
+                `onSuccess default Callback: ${JSON.stringify(data)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`
+            )
         },
         onError(error, variables, context) {
-            console.log(`onError default Callback: ${JSON.stringify(error)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`)
+            console.log(
+                `onError default Callback: ${JSON.stringify(error)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`
+            )
         },
         // mutationKey: ['register'],
     })

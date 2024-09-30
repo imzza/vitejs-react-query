@@ -1,391 +1,371 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Fuse Mock API",
-    "version": "1.0.0",
-    "contact": {
-      "url": "http://fusetheme.com/",
-      "email": "themes@withinpixels.com",
-      "name": "Fuse Theme"
-    },
-    "description": "Fuse Theme Family Mock API Open API Definitions",
-    "license": {
-      "name": "private",
-      "url": "https://themeforest.net/licenses/terms/regular"
-    }
-  },
-  "servers": [
-    {
-      "url": "http://localhost:3000/api"
-    }
-  ],
-  "components": {
-    "securitySchemes": {},
-    "examples": {
-      "profile_about": {
-        "value": {
-          "general": {
-            "gender": "Male",
-            "birthday": "February 30th, 1974",
-            "locations": [
-              "London, UK",
-              "New York, USA"
-            ],
-            "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget pharetra felis, sed ullamcorper dui. Sed et elementum neque. Vestibulum pellente viverra ultrices. Etiam justo augue, vehicula ac gravida a, interdum sit amet nisl. Integer vitae nisi id nibh dictum mollis in vitae tortor."
-          },
-          "work": {
-            "occupation": "Developer",
-            "skills": "C#, PHP, Javascript, Angular, JS, HTML, CSS",
-            "jobs": [
-              {
-                "company": "Self-Employed",
-                "date": "2010 - Now"
-              },
-              {
-                "company": "Google",
-                "date": "2008 - 2010"
-              }
-            ]
-          },
-          "contact": {
-            "address": "Ut pharetra luctus est quis sodales. Duis nisi tortor, bibendum eget tincidunt, aliquam ac elit. Mauris nec euismod odio.",
-            "tel": [
-              "+6 555 6600",
-              "+9 555 5255"
-            ],
-            "websites": [
-              "withinpixels.com"
-            ],
-            "emails": [
-              "mail@withinpixels.com",
-              "mail@creapond.com"
-            ]
-          },
-          "groups": [
-            {
-              "id": "1",
-              "name": "Android",
-              "category": "Technology",
-              "members": "1.856.546"
-            },
-            {
-              "id": "2",
-              "name": "Google",
-              "category": "Web",
-              "members": "1.226.121"
-            },
-            {
-              "id": "3",
-              "name": "Fallout",
-              "category": "Games",
-              "members": "526.142"
-            }
-          ],
-          "friends": [
-            {
-              "id": "1",
-              "name": "Garry Newman",
-              "avatar": "assets/images/avatars/male-11.jpg"
-            },
-            {
-              "id": "2",
-              "name": "Carl Henderson",
-              "avatar": "assets/images/avatars/male-12.jpg"
-            },
-            {
-              "id": "3",
-              "name": "Jane Dean",
-              "avatar": "assets/images/avatars/female-11.jpg"
-            },
-            {
-              "id": "4",
-              "name": "Garry Arnold",
-              "avatar": "assets/images/avatars/male-13.jpg"
-            },
-            {
-              "id": "5",
-              "name": "Vincent Munoz",
-              "avatar": "assets/images/avatars/male-14.jpg"
-            },
-            {
-              "id": "6",
-              "name": "Alice Freeman",
-              "avatar": "assets/images/avatars/female-12.jpg"
-            },
-            {
-              "id": "7",
-              "name": "Andrew Green",
-              "avatar": "assets/images/avatars/male-16.jpg"
-            }
-          ]
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuse Mock API",
+        "version": "1.0.0",
+        "contact": {
+            "url": "http://fusetheme.com/",
+            "email": "themes@withinpixels.com",
+            "name": "Fuse Theme"
+        },
+        "description": "Fuse Theme Family Mock API Open API Definitions",
+        "license": {
+            "name": "private",
+            "url": "https://themeforest.net/licenses/terms/regular"
         }
-      },
-      "auth_users": {
-        "value": [
-          {
-            "uid": "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
-            "password": "admin",
-            "role": "admin",
-            "data": {
-              "displayName": "Abbott Keitch",
-              "photoURL": "assets/images/avatars/brian-hughes.jpg",
-              "email": "admin@fusetheme.com",
-              "settings": {
-                "layout": {},
-                "theme": {}
-              },
-              "shortcuts": [
-                "apps.calendar",
-                "apps.mailbox",
-                "apps.contacts"
-              ]
-            }
-          },
-          {
-            "uid": "XgbuVEXBU6gtSKdbTYR1Zbbby1i3",
-            "password": "staff",
-            "role": "staff",
-            "data": {
-              "displayName": "Arnold Matlock",
-              "photoURL": "assets/images/avatars/Arnold.jpg",
-              "email": "staff@fusetheme.com",
-              "settings": {
-                "layout": {
-                  "style": "layout2",
-                  "config": {
-                    "mode": "boxed",
-                    "scroll": "content",
-                    "navbar": {
-                      "display": true
-                    },
-                    "toolbar": {
-                      "display": true,
-                      "position": "below"
-                    },
-                    "footer": {
-                      "display": true,
-                      "style": "fixed"
-                    }
-                  }
-                },
-                "customScrollbars": true,
-                "theme": {}
-              },
-              "shortcuts": [
-                "apps.calendar",
-                "apps.mailbox",
-                "apps.contacts",
-                "apps.tasks"
-              ]
-            }
-          }
-        ]
-      },
-      "states": {
-        "value": [
-          {
-            "label": "Alabama",
-            "value": "AL"
-          },
-          {
-            "label": "Alaska",
-            "value": "AK"
-          },
-          {
-            "label": "Arizona",
-            "value": "AZ"
-          },
-          {
-            "label": "Arkansas",
-            "value": "AR"
-          },
-          {
-            "label": "California",
-            "value": "CA"
-          },
-          {
-            "label": "Colorado",
-            "value": "CO"
-          },
-          {
-            "label": "Connecticut",
-            "value": "CT"
-          },
-          {
-            "label": "Delaware",
-            "value": "DE"
-          },
-          {
-            "label": "Florida",
-            "value": "FL"
-          },
-          {
-            "label": "Georgia",
-            "value": "GA"
-          },
-          {
-            "label": "Hawaii",
-            "value": "HI"
-          },
-          {
-            "label": "Idaho",
-            "value": "ID"
-          },
-          {
-            "label": "Illinois",
-            "value": "IL"
-          },
-          {
-            "label": "Indiana",
-            "value": "IN"
-          },
-          {
-            "label": "Iowa",
-            "value": "IA"
-          },
-          {
-            "label": "Kansas",
-            "value": "KS"
-          },
-          {
-            "label": "Kentucky",
-            "value": "KY"
-          },
-          {
-            "label": "Louisiana",
-            "value": "LA"
-          },
-          {
-            "label": "Maine",
-            "value": "ME"
-          },
-          {
-            "label": "Maryland",
-            "value": "MD"
-          },
-          {
-            "label": "Massachusetts",
-            "value": "MA"
-          },
-          {
-            "label": "Michigan",
-            "value": "MI"
-          },
-          {
-            "label": "Minnesota",
-            "value": "MN"
-          },
-          {
-            "label": "Mississippi",
-            "value": "MS"
-          },
-          {
-            "label": "Missouri",
-            "value": "MO"
-          },
-          {
-            "label": "Montana",
-            "value": "MT"
-          },
-          {
-            "label": "Nebraska",
-            "value": "NE"
-          },
-          {
-            "label": "Nevada",
-            "value": "NV"
-          },
-          {
-            "label": "New Hampshire",
-            "value": "NH"
-          },
-          {
-            "label": "New Jersey",
-            "value": "NJ"
-          },
-          {
-            "label": "New Mexico",
-            "value": "NM"
-          },
-          {
-            "label": "New York",
-            "value": "NY"
-          },
-          {
-            "label": "North Carolina",
-            "value": "NC"
-          },
-          {
-            "label": "North Dakota",
-            "value": "ND"
-          },
-          {
-            "label": "Ohio",
-            "value": "OH"
-          },
-          {
-            "label": "Oklahoma",
-            "value": "OK"
-          },
-          {
-            "label": "Oregon",
-            "value": "OR"
-          },
-          {
-            "label": "Pennsylvania",
-            "value": "PA"
-          },
-          {
-            "label": "Rhode Island",
-            "value": "RI"
-          },
-          {
-            "label": "South Carolina",
-            "value": "SC"
-          },
-          {
-            "label": "South Dakota",
-            "value": "SD"
-          },
-          {
-            "label": "Tennessee",
-            "value": "TN"
-          },
-          {
-            "label": "Texas",
-            "value": "TX"
-          },
-          {
-            "label": "Utah",
-            "value": "UT"
-          },
-          {
-            "label": "Vermont",
-            "value": "VT"
-          },
-          {
-            "label": "Virginia",
-            "value": "VA"
-          },
-          {
-            "label": "Washington",
-            "value": "WA"
-          },
-          {
-            "label": "West Virginia",
-            "value": "WV"
-          },
-          {
-            "label": "Wisconsin",
-            "value": "WI"
-          },
-          {
-            "label": "Wyoming",
-            "value": "WY"
-          }
-        ]
-      }
     },
-    "responses": {}
-  }
+    "servers": [
+        {
+            "url": "http://localhost:3000/api"
+        }
+    ],
+    "components": {
+        "securitySchemes": {},
+        "examples": {
+            "profile_about": {
+                "value": {
+                    "general": {
+                        "gender": "Male",
+                        "birthday": "February 30th, 1974",
+                        "locations": ["London, UK", "New York, USA"],
+                        "about": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eget pharetra felis, sed ullamcorper dui. Sed et elementum neque. Vestibulum pellente viverra ultrices. Etiam justo augue, vehicula ac gravida a, interdum sit amet nisl. Integer vitae nisi id nibh dictum mollis in vitae tortor."
+                    },
+                    "work": {
+                        "occupation": "Developer",
+                        "skills": "C#, PHP, Javascript, Angular, JS, HTML, CSS",
+                        "jobs": [
+                            {
+                                "company": "Self-Employed",
+                                "date": "2010 - Now"
+                            },
+                            {
+                                "company": "Google",
+                                "date": "2008 - 2010"
+                            }
+                        ]
+                    },
+                    "contact": {
+                        "address": "Ut pharetra luctus est quis sodales. Duis nisi tortor, bibendum eget tincidunt, aliquam ac elit. Mauris nec euismod odio.",
+                        "tel": ["+6 555 6600", "+9 555 5255"],
+                        "websites": ["withinpixels.com"],
+                        "emails": ["mail@withinpixels.com", "mail@creapond.com"]
+                    },
+                    "groups": [
+                        {
+                            "id": "1",
+                            "name": "Android",
+                            "category": "Technology",
+                            "members": "1.856.546"
+                        },
+                        {
+                            "id": "2",
+                            "name": "Google",
+                            "category": "Web",
+                            "members": "1.226.121"
+                        },
+                        {
+                            "id": "3",
+                            "name": "Fallout",
+                            "category": "Games",
+                            "members": "526.142"
+                        }
+                    ],
+                    "friends": [
+                        {
+                            "id": "1",
+                            "name": "Garry Newman",
+                            "avatar": "assets/images/avatars/male-11.jpg"
+                        },
+                        {
+                            "id": "2",
+                            "name": "Carl Henderson",
+                            "avatar": "assets/images/avatars/male-12.jpg"
+                        },
+                        {
+                            "id": "3",
+                            "name": "Jane Dean",
+                            "avatar": "assets/images/avatars/female-11.jpg"
+                        },
+                        {
+                            "id": "4",
+                            "name": "Garry Arnold",
+                            "avatar": "assets/images/avatars/male-13.jpg"
+                        },
+                        {
+                            "id": "5",
+                            "name": "Vincent Munoz",
+                            "avatar": "assets/images/avatars/male-14.jpg"
+                        },
+                        {
+                            "id": "6",
+                            "name": "Alice Freeman",
+                            "avatar": "assets/images/avatars/female-12.jpg"
+                        },
+                        {
+                            "id": "7",
+                            "name": "Andrew Green",
+                            "avatar": "assets/images/avatars/male-16.jpg"
+                        }
+                    ]
+                }
+            },
+            "auth_users": {
+                "value": [
+                    {
+                        "uid": "XgbuVEXBU5gtSKdbQRP1Zbbby1i1",
+                        "password": "admin",
+                        "role": "admin",
+                        "data": {
+                            "displayName": "Abbott Keitch",
+                            "photoURL": "assets/images/avatars/brian-hughes.jpg",
+                            "email": "admin@fusetheme.com",
+                            "settings": {
+                                "layout": {},
+                                "theme": {}
+                            },
+                            "shortcuts": ["apps.calendar", "apps.mailbox", "apps.contacts"]
+                        }
+                    },
+                    {
+                        "uid": "XgbuVEXBU6gtSKdbTYR1Zbbby1i3",
+                        "password": "staff",
+                        "role": "staff",
+                        "data": {
+                            "displayName": "Arnold Matlock",
+                            "photoURL": "assets/images/avatars/Arnold.jpg",
+                            "email": "staff@fusetheme.com",
+                            "settings": {
+                                "layout": {
+                                    "style": "layout2",
+                                    "config": {
+                                        "mode": "boxed",
+                                        "scroll": "content",
+                                        "navbar": {
+                                            "display": true
+                                        },
+                                        "toolbar": {
+                                            "display": true,
+                                            "position": "below"
+                                        },
+                                        "footer": {
+                                            "display": true,
+                                            "style": "fixed"
+                                        }
+                                    }
+                                },
+                                "customScrollbars": true,
+                                "theme": {}
+                            },
+                            "shortcuts": ["apps.calendar", "apps.mailbox", "apps.contacts", "apps.tasks"]
+                        }
+                    }
+                ]
+            },
+            "states": {
+                "value": [
+                    {
+                        "label": "Alabama",
+                        "value": "AL"
+                    },
+                    {
+                        "label": "Alaska",
+                        "value": "AK"
+                    },
+                    {
+                        "label": "Arizona",
+                        "value": "AZ"
+                    },
+                    {
+                        "label": "Arkansas",
+                        "value": "AR"
+                    },
+                    {
+                        "label": "California",
+                        "value": "CA"
+                    },
+                    {
+                        "label": "Colorado",
+                        "value": "CO"
+                    },
+                    {
+                        "label": "Connecticut",
+                        "value": "CT"
+                    },
+                    {
+                        "label": "Delaware",
+                        "value": "DE"
+                    },
+                    {
+                        "label": "Florida",
+                        "value": "FL"
+                    },
+                    {
+                        "label": "Georgia",
+                        "value": "GA"
+                    },
+                    {
+                        "label": "Hawaii",
+                        "value": "HI"
+                    },
+                    {
+                        "label": "Idaho",
+                        "value": "ID"
+                    },
+                    {
+                        "label": "Illinois",
+                        "value": "IL"
+                    },
+                    {
+                        "label": "Indiana",
+                        "value": "IN"
+                    },
+                    {
+                        "label": "Iowa",
+                        "value": "IA"
+                    },
+                    {
+                        "label": "Kansas",
+                        "value": "KS"
+                    },
+                    {
+                        "label": "Kentucky",
+                        "value": "KY"
+                    },
+                    {
+                        "label": "Louisiana",
+                        "value": "LA"
+                    },
+                    {
+                        "label": "Maine",
+                        "value": "ME"
+                    },
+                    {
+                        "label": "Maryland",
+                        "value": "MD"
+                    },
+                    {
+                        "label": "Massachusetts",
+                        "value": "MA"
+                    },
+                    {
+                        "label": "Michigan",
+                        "value": "MI"
+                    },
+                    {
+                        "label": "Minnesota",
+                        "value": "MN"
+                    },
+                    {
+                        "label": "Mississippi",
+                        "value": "MS"
+                    },
+                    {
+                        "label": "Missouri",
+                        "value": "MO"
+                    },
+                    {
+                        "label": "Montana",
+                        "value": "MT"
+                    },
+                    {
+                        "label": "Nebraska",
+                        "value": "NE"
+                    },
+                    {
+                        "label": "Nevada",
+                        "value": "NV"
+                    },
+                    {
+                        "label": "New Hampshire",
+                        "value": "NH"
+                    },
+                    {
+                        "label": "New Jersey",
+                        "value": "NJ"
+                    },
+                    {
+                        "label": "New Mexico",
+                        "value": "NM"
+                    },
+                    {
+                        "label": "New York",
+                        "value": "NY"
+                    },
+                    {
+                        "label": "North Carolina",
+                        "value": "NC"
+                    },
+                    {
+                        "label": "North Dakota",
+                        "value": "ND"
+                    },
+                    {
+                        "label": "Ohio",
+                        "value": "OH"
+                    },
+                    {
+                        "label": "Oklahoma",
+                        "value": "OK"
+                    },
+                    {
+                        "label": "Oregon",
+                        "value": "OR"
+                    },
+                    {
+                        "label": "Pennsylvania",
+                        "value": "PA"
+                    },
+                    {
+                        "label": "Rhode Island",
+                        "value": "RI"
+                    },
+                    {
+                        "label": "South Carolina",
+                        "value": "SC"
+                    },
+                    {
+                        "label": "South Dakota",
+                        "value": "SD"
+                    },
+                    {
+                        "label": "Tennessee",
+                        "value": "TN"
+                    },
+                    {
+                        "label": "Texas",
+                        "value": "TX"
+                    },
+                    {
+                        "label": "Utah",
+                        "value": "UT"
+                    },
+                    {
+                        "label": "Vermont",
+                        "value": "VT"
+                    },
+                    {
+                        "label": "Virginia",
+                        "value": "VA"
+                    },
+                    {
+                        "label": "Washington",
+                        "value": "WA"
+                    },
+                    {
+                        "label": "West Virginia",
+                        "value": "WV"
+                    },
+                    {
+                        "label": "Wisconsin",
+                        "value": "WI"
+                    },
+                    {
+                        "label": "Wyoming",
+                        "value": "WY"
+                    }
+                ]
+            }
+        },
+        "responses": {}
+    }
 }

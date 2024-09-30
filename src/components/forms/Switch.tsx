@@ -5,7 +5,7 @@ import { FormControlLabel, Switch as MuiSwitch, FormGroup, FormHelperText } from
 interface SwitchProps extends FieldValues {
     name: string
     label: string
-    control : Control<any>
+    control: Control<any>
 }
 
 export default function Switch({ control, name, label, ...props }: SwitchProps) {
