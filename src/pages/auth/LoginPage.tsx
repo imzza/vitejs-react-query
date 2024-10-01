@@ -2,10 +2,10 @@ import { useEffect } from 'react'
 import { useLoginMutation } from '../../api/axios'
 
 export default function LoginPage() {
-    const { mutate: login, isPending: isLoading, isError, isSuccess, error } = useLoginMutation()
+    const loginMutation = useLoginMutation()
 
     useEffect(() => {
-        login(
+        loginMutation.mutate(
             {
                 email: 'admin@fusetheme.com',
                 password: 'admin',
@@ -20,19 +20,13 @@ export default function LoginPage() {
             }
         )
     }, [])
-
-    useEffect(() => {
-        if (isSuccess) {
-            console.log('Success')
-        }
-    }, [isSuccess])
-
-    if (isLoading) {
+    
+    if (loginMutation.isPending) {
         return <h1>Loading...</h1>
     }
     return (
         <h1>
-            Login Page {isError ? error.message : null} {isSuccess ? 'Success' : null}
+            Login Page {loginMutation.isError ? loginMutation.error.message : null} {loginMutation.isSuccess ? 'Success' : null}
         </h1>
     )
 }
