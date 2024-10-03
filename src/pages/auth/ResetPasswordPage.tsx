@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Avatar from '@mui/material/Avatar'
 // import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid2'
 import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
@@ -101,8 +101,8 @@ export default function ResetPasswordPage() {
                     Enter your new password. After confirming, you will be asked to log in again.
                 </Typography>
                 <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                    <Grid>
+                        <Grid>
                             <PasswordInput
                                 control={control}
                                 // register={register}
@@ -114,7 +114,7 @@ export default function ResetPasswordPage() {
                                 fullWidth
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid>
                             <PasswordInput
                                 control={control}
                                 // register={register}
@@ -134,8 +134,8 @@ export default function ResetPasswordPage() {
                         disabled={isSubmitting || isLoading ? true : false}
                         type="submit"
                     />
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
+                    <Grid>
+                        <Grid>
                             <Link to="/login">
                                 <Typography variant="body2">Already have an account? Sign in</Typography>
                             </Link>

@@ -1,19 +1,18 @@
-import { Avatar, Grid, Box, Typography, Container } from '@mui/material'
+import { Avatar, Grid2 as Grid, Box, Typography, Container } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { registerSchema, RegisterSchema } from '../../settings/schemas'
+import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '../../components/LoadingButton'
-
 import PasswordInput from '../../components/forms/PasswordInput'
 import TextInput from '../../components/forms/TextInput'
 import Checkbox from '../../components/forms/Checkbox'
-
-import { useRegisterMutation } from '../../redux/api/authApi'
+import { registerSchema, RegisterSchema } from '../../types/schemas'
+import { useRegisterMutation } from '../../api/axios'
 
 export default function RegisterPage() {
-    const [registerUser, { isLoading, isSuccess }] = useRegisterMutation() // data, error, isError,
+    const registerMutation = useRegisterMutation()
+    const navigate = useNavigate()
 
     const {
         control,
@@ -23,27 +22,46 @@ export default function RegisterPage() {
         reset,
         getValues,
     } = useForm<RegisterSchema>({
-        resolver: yupResolver(registerSchema),
+        resolver: zodResolver(registerSchema),
         criteriaMode: 'all',
         reValidateMode: 'onChange',
         mode: 'onChange',
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            termsAccepted: false,
+        },
     })
 
-    const onSubmit: SubmitHandler<RegisterSchema> = async (data: RegisterSchema) => {
-        try {
-            await registerUser(data).unwrap()
-            reset()
-        } catch (error: unknown) {
-            const errorData = error as Record<string, string[]>
-            console.log('Error', errorData.data)
-            for (const key in errorData.data) {
-                setError(key as keyof RegisterSchema, {
-                    type: 'manual',
-                    message: errorData.data[key][0],
-                })
-            }
-            console.error('An error occurred', errorData)
-        }
+    const onSubmit: SubmitHandler<RegisterSchema> = async (formData: RegisterSchema) => {
+        registerMutation.mutate(formData, {
+            onSuccess: (data) => {
+                console.log(`onSuccess Callback: ${JSON.stringify(data)}`)
+                navigate(`/please-verify?email=${encodeURIComponent(formData.email)}`)
+            },
+            onError: (error) => {
+                console.log(`onError Callback: ${JSON.stringify(error)}`)
+            },
+        })
+
+        // console.log("Data", data)
+
+        // try {
+        //     await registerUser(data).unwrap()
+        //     reset()
+        // } catch (error: unknown) {
+        //     const errorData = error as Record<string, string[]>
+        //     console.log('Error', errorData.data)
+        //     for (const key in errorData.data) {
+        //         setError(key as keyof RegisterSchema, {
+        //             type: 'manual',
+        //             message: errorData.data[key][0],
+        //         })
+        //     }
+        //     console.error('An error occurred', errorData)
+        // }
     }
 
     return (
@@ -61,7 +79,7 @@ export default function RegisterPage() {
                     py: 6,
                 }}
             >
-                {isSuccess ? (
+                {registerMutation.isSuccess ? (
                     <>
                         <Typography component="h2" variant="h5">
                             Check your email
@@ -132,13 +150,13 @@ export default function RegisterPage() {
 
                             <LoadingButton
                                 type="submit"
-                                disabled={isSubmitting || isLoading}
-                                loading={isSubmitting || isLoading}
+                                disabled={isSubmitting || registerMutation.isPending}
+                                loading={isSubmitting || registerMutation.isPending}
                                 label="Sign Up"
                             />
 
                             <Grid container justifyContent="flex-end">
-                                <Grid item>
+                                <Grid>
                                     <Link to="/login">
                                         <Typography variant="body2">Already have an account? Sign in</Typography>
                                     </Link>

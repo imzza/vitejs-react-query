@@ -224,7 +224,7 @@ export const authApiMocks = (mock: MockAdapter) => {
     mock.onPost('/auth/verify-email').reply((request) => {
         const data = JSON.parse(request.data as string) as {
             email: string
-            verificationToken: number
+            verificationCode: number
         }
         let updatedUser: User | undefined
 
@@ -239,7 +239,7 @@ export const authApiMocks = (mock: MockAdapter) => {
             }
             return _user
         })
-        if (data.verificationToken === 123456) {
+        if (data.verificationCode == 123456) {
             updatedUser = usersApi.find((_user) => _user.data.email === data.email)
             if (updatedUser) {
                 delete (updatedUser as Partial<UserAuthType>).password

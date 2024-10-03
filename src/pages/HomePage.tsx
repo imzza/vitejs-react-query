@@ -43,6 +43,7 @@ type FormSchema = z.infer<typeof formSchema>
 
 export default function HomePage() {
     const { data: states } = useStatesQuery()
+    console.log(states);
 
     const methods = useForm<FormSchema>({
         resolver: zodResolver(formSchema),

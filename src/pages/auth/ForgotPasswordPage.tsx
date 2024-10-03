@@ -1,16 +1,17 @@
-import {Avatar, Container, Grid, Typography, Box} from '@mui/material'
+import { Avatar, Container, Grid2 as Grid, Typography, Box } from '@mui/material'
 import { useEffect } from 'react'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { forgotPasswordSchema, ForgotPasswordSchema } from '../../settings/schemas'
-import { useForgotPasswordMutation } from '../../redux/api/authApi'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from 'react-router-dom'
 import TextInput from '../../components/forms/TextInput'
 import LoadingButton from '../../components/LoadingButton'
+import { forgotPasswordSchema, ForgotPasswordSchema } from '../../types/schemas'
+import { useForgotPasswordMutation } from '../../api/axios'
 
 export default function ForgotPasswordPage() {
-    const [forgotPassword, { isLoading, isSuccess }] = useForgotPasswordMutation() // data, error, isError,
+    const forgotPasswordMutation = useForgotPasswordMutation()
+
     const {
         control,
         formState: { errors, isSubmitting },
@@ -19,27 +20,38 @@ export default function ForgotPasswordPage() {
         // reset,
         getValues,
     } = useForm<ForgotPasswordSchema>({
-        resolver: yupResolver(forgotPasswordSchema),
+        resolver: zodResolver(forgotPasswordSchema),
         criteriaMode: 'all',
         reValidateMode: 'onChange',
         mode: 'onChange',
+        defaultValues: {
+            email: '',
+        },
     })
 
     const onSubmit: SubmitHandler<ForgotPasswordSchema> = async (data: ForgotPasswordSchema) => {
         console.log(`Data: ${JSON.stringify(data)}`)
-        try {
-            await forgotPassword(data).unwrap()
-            // reset()
-        } catch (error: unknown) {
-            const errorData = error as Record<string, string[]>
-            for (const key in errorData) {
-                setError(key as keyof ForgotPasswordSchema, {
-                    type: 'manual',
-                    message: errorData[key][0],
-                })
-            }
-            console.error('An error occurred', errorData)
-        }
+        forgotPasswordMutation.mutate(data, {
+            onSuccess: (data) => {
+                console.log(`onSuccess Callback: ${JSON.stringify(data.data)}`)
+            },
+            onError: (error: any) => {
+                console.log(`onError Callback: ${JSON.stringify(error.response?.data)}`)
+            },
+        })
+        // try {
+        //     await forgotPassword(data).unwrap()
+        //     // reset()
+        // } catch (error: unknown) {
+        //     const errorData = error as Record<string, string[]>
+        //     for (const key in errorData) {
+        //         setError(key as keyof ForgotPasswordSchema, {
+        //             type: 'manual',
+        //             message: errorData[key][0],
+        //         })
+        //     }
+        //     console.error('An error occurred', errorData)
+        // }
     }
 
     useEffect(() => {
@@ -61,7 +73,7 @@ export default function ForgotPasswordPage() {
                     py: 6,
                 }}
             >
-                {isSuccess ? (
+                {forgotPasswordMutation.isSuccess ? (
                     <>
                         <Typography component="h2" variant="h5">
                             Check your email
@@ -89,29 +101,23 @@ export default function ForgotPasswordPage() {
                         <Typography variant="body2" color="textSecondary" align="center">
                             To reset your password, enter the email address you use to log in.
                         </Typography>
+                        
                         <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
-                            <TextInput
-                                fullWidth
-                                margin="normal"
-                                control={control}
-                                name='email'
-                                label='Email Address'
-                            />
+                            <TextInput fullWidth margin="normal" control={control} name="email" label="Email Address" />
                             <LoadingButton
                                 type="submit"
-
                                 label="Get reset link"
-                                loading={isSubmitting || isLoading}
-                                disabled={isSubmitting || isLoading}
+                                loading={isSubmitting || forgotPasswordMutation.isPending}
+                                disabled={isSubmitting || forgotPasswordMutation.isPending}
                             />
 
                             <Grid container>
-                                <Grid item xs>
+                                <Grid>
                                     <Link to="/forgot-password">
                                         <Typography variant="body2">Forgot password?</Typography>
                                     </Link>
                                 </Grid>
-                                <Grid item>
+                                <Grid>
                                     <Link to="/registration">
                                         <Typography variant="body2">Don't have an account? Sign Up</Typography>
                                     </Link>

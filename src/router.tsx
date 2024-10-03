@@ -7,6 +7,20 @@ import { lazy } from 'react'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const LoginPage = lazy(() => import('./pages/auth/LoginPage'))
+const RegisterPage = lazy(() => import(/* webpackChunkName: "RegisterPage" */ './pages/auth/RegisterPage'))
+const ActivateAccountPage = lazy(
+    () => import(/* webpackChunkName: "ActivateAccountPage" */ './pages/auth/ActivateAccountPage')
+)
+const ForgotPasswordPage = lazy(
+    () => import(/* webpackChunkName: "ForgotPasswordPage" */ './pages/auth/ForgotPasswordPage')
+)
+const ResetPasswordPage = lazy(
+    () => import(/* webpackChunkName: "ResetPasswordPage" */ './pages/auth/ResetPasswordPage')
+)
+
+const VerifyEmailLandingPage = lazy(() => import('./pages/auth/VeifyEmailLandingPage'))
+
+const VerifyEmailCodePage = lazy(() => import('./pages/auth/VerifyEmailCodePage'))
 
 function Loader() {
     return <p>Loading</p>
@@ -69,6 +83,30 @@ const router = createBrowserRouter(
                         {
                             path: '/login',
                             Component: LoginPage,
+                        },
+                        {
+                            path: '/registration',
+                            Component: RegisterPage,
+                        },
+                        {
+                            path: '/activate-account',
+                            Component: ActivateAccountPage,
+                        },
+                        {
+                            path: '/forgot-password',
+                            Component: ForgotPasswordPage,
+                        },
+                        {
+                            path: '/reset-password',
+                            Component: ResetPasswordPage,
+                        },
+                        {
+                            path: '/please-verify',
+                            Component: VerifyEmailLandingPage,
+                        },
+                        {
+                            path: '/verify-email',
+                            Component: VerifyEmailCodePage,
                         },
                     ],
                 },

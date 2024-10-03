@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
 // https://tanstack.com/query/latest/docs/framework/react/guides/mutations
@@ -56,16 +56,28 @@ export const api = axios.create({
 //     return response.data
 // }
 
+type State = {
+    label: string, 
+    value: string
+}
+
+type States = {
+    data: State[]
+}
+
 export const getStates = () => {
-    return api.get('/mock-api/states')
+    return api.get<AxiosResponse<States>>('/mock-api/states').then(response => response.data)
 }
 
 export const useStatesQuery = () => {
-    return useQuery({
+    return useQuery<States>({
         queryKey: ['states'],
         queryFn: () => {
             return api.get('/mock-api/states')
         },
+        onSuccess: (data: States) => {
+            console.log(data.data)
+        }
     })
 }
 
@@ -99,5 +111,33 @@ export const useRegisterMutation = () => {
             )
         },
         // mutationKey: ['register'],
+    })
+}
+
+export const useVerifyEmailMutation = () => {
+    return useMutation({
+        mutationFn: (data: any) => {
+            return api.post('/mock-api/auth/verify-email', data)
+        },
+    })
+}
+
+
+export const useForgotPasswordMutation = () => {
+    return useMutation({
+        mutationFn: (data: any) => {
+            return api.post('/mock-api/auth/forgot-password', data)
+        },
+        // onSuccess(data, variables, context) {
+        //     console.log(
+        //         `onSuccess default Callback: ${JSON.stringify(data)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`
+        //     )
+        // },
+        // onError(error, variables, context) {
+        //     console.log(
+        //         `onError default Callback: ${JSON.stringify(error)} Varibales: ${JSON.stringify(variables)} Context: ${JSON.stringify(context)}`
+        //     )
+        // },
+        // mutationKey: ['forgot-password'],
     })
 }

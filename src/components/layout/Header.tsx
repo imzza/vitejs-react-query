@@ -25,7 +25,10 @@ const pages = [
     { name: 'Contact', link: '/contact' },
     { name: 'Forms', link: '/forms' },
     { name: 'Products', link: '/context' },
-    { name: 'Users', link: '/users' },
+    { name: 'Login', link: '/login' },
+    { name: 'Register', link: '/registration' },
+    { name: 'Forgot Password', link: '/forgot-password' },
+    // { name: 'Users', link: '/users' },
     // { name: 'Logout', link: '/logout' },
 ]
 
