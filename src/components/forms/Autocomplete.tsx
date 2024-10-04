@@ -7,7 +7,7 @@ import { styled, Autocomplete as MuiAutocomplete, Box, Checkbox, TextField } fro
 interface AutocompleteProps extends FieldValues {
     name: string
     label: string
-    options?: { value: any; label: string }[]
+    options?: { value: string; label: string }[]
 }
 
 const StyledTextField = styled(TextField)(() => ({

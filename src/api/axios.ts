@@ -61,23 +61,14 @@ type State = {
     value: string
 }
 
-type States = {
-    data: State[]
-}
-
-export const getStates = () => {
-    return api.get<AxiosResponse<States>>('/mock-api/states').then(response => response.data)
+export const getStates = (): Promise<State[]> => {
+    return api.get('/mock-api/states').then(response => response.data)
 }
 
 export const useStatesQuery = () => {
-    return useQuery<States>({
+    return useQuery({
         queryKey: ['states'],
-        queryFn: () => {
-            return api.get('/mock-api/states')
-        },
-        onSuccess: (data: States) => {
-            console.log(data.data)
-        }
+        queryFn: getStates,
     })
 }
 

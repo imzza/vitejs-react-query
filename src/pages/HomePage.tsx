@@ -10,7 +10,8 @@ import z from 'zod'
 import Switch from '../components/forms/Switch'
 import PasswordInput from '../components/forms/PasswordInput'
 import FileUpload from '../components/forms/FileUpload'
-
+import DateInput from '../components/forms/DateInput'
+// import dayjs from "dayjs"
 import { useStatesQuery } from '../api/axios'
 
 const formSchema = z.object({
@@ -37,13 +38,16 @@ const formSchema = z.object({
     switch: z.boolean().refine((val) => val === true, { message: 'Switch is required' }),
     password: z.string().min(1, { message: 'Password is required' }),
     image: z.instanceof(File, { message: 'Image file is required' }),
+    // date: z.string().refine((val) => dayjs(val, "YYYY-MM-DD", true).isValid(), {
+    //     message: "Date is required"
+    // }),
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export default function HomePage() {
     const { data: states } = useStatesQuery()
-    console.log(states);
+    console.log(`States Data: ${JSON.stringify(states)}`);
 
     const methods = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
@@ -57,6 +61,7 @@ export default function HomePage() {
             switch: false,
             password: '',
             image: '' as unknown as File,
+            // date: ''
         },
         criteriaMode: 'all',
         mode: 'onChange',
@@ -105,8 +110,8 @@ export default function HomePage() {
                         placeholder="Enter your email"
                         fullWidth
                     />
-                    <Autocomplete name="state" control={methods.control} label="State" options={states?.data} />
-                    <ComboBox name="select" control={methods.control} label="ComboBox" options={states?.data} />
+                    <Autocomplete name="state" control={methods.control} label="State" options={states} />
+                    <ComboBox name="select" control={methods.control} label="ComboBox" options={states} />
 
                     <PasswordInput control={methods.control} name="password" label="Password" fullWidth />
                     {/* <FileUpload name="image" control={methods.watch} limit={1} multiple={false} /> */}
@@ -123,6 +128,8 @@ export default function HomePage() {
                         label="Switch Component"
                         sx={{ alignSelf: 'flex-start' }}
                     />
+                    {/* <DateInput name="date" label="Date Input" control={methods.control} /> */}
+
                     <LoadingButton label="Submit" loading={false} sx={{ width: '200px' }} />
                 </Stack>
             </Box>

@@ -4,7 +4,7 @@ import { Controller, FieldValues } from 'react-hook-form'
 interface ComboBoxProps extends FieldValues {
     name: string
     label: string
-    options: { label: string; value: string }[]
+    options?: { label: string; value: string }[]
 }
 const StyledTextField = styled(TextField)(() => ({
     '& .MuiFormHelperText-root': {
@@ -21,7 +21,7 @@ export default function ComboBox({ control, name, label, options }: ComboBoxProp
                 <Autocomplete
                     value={
                         value
-                            ? (options.find((option) => {
+                            ? (options?.find((option) => {
                                   return value === option.value
                               }) ?? null)
                             : null
