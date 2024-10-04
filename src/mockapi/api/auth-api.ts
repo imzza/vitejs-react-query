@@ -221,6 +221,67 @@ export const authApiMocks = (mock: MockAdapter) => {
         }
     })
 
+    mock.onPost('/auth/verify-email').reply((request) => {
+        const data = JSON.parse(request.data as string) as {
+            email: string
+            verificationCode: number
+        }
+        let updatedUser: User | undefined
+
+        usersApi = usersApi.map((_user) => {
+            if (_user.data.email === data.email) {
+                updatedUser = _.assign({}, _user, {
+                    data: {
+                        ..._user.data,
+                        emailVerified: true,
+                    },
+                })
+            }
+            return _user
+        })
+        if (data.verificationCode == 123456) {
+            updatedUser = usersApi.find((_user) => _user.data.email === data.email)
+            if (updatedUser) {
+                delete (updatedUser as Partial<UserAuthType>).password
+                return [200, { message: 'Email verified successfully' }]
+            } else {
+                return [404, { message: 'User not found' }]
+            }
+        } else {
+            return [400, { message: 'Invalid verification token' }]
+        }
+    })
+
+    mock.onPost('/auth/forgot-password').reply((request) => {
+        const data = JSON.parse(request.data as string) as {
+            email: string
+        }
+        const user = usersApi.find((_user) => _user.data.email === data.email)
+        if (user) {
+            return [200, { message: 'Password reset email sent' }]
+        } else {
+            return [404, { message: 'User not found' }]
+        }
+    })
+
+    mock.onPost('/auth/reset-password').reply((request) => {
+        const data = JSON.parse(request.data as string) as {
+            email: string
+            password: string
+            verificationToken: number
+        }
+        if (data.verificationToken === 123456) {
+            const user = usersApi.find((_user) => _user.data.email === data.email)
+            if (user) {
+                user.password = data.password
+                return [200, { message: 'Password reset successfully' }]
+            } else {
+                return [404, { message: 'User not found' }]
+            }
+        } else {
+            return [400, { message: 'Invalid verification token' }]
+        }
+    })
     /**
      * JWT Token Generator/Verifier Helpers
      * !! Created for Demonstration Purposes, cannot be used for PRODUCTION

@@ -1,12 +1,17 @@
 import Checkbox from '../components/forms/Checkbox'
 import TextInput from '../components/forms/TextInput'
-// import NumberInput from '../components/forms/NumberInput'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Button, Stack, Box } from '@mui/material'
+import { Stack, Box, Typography } from '@mui/material'
 import LoadingButton from '../components/LoadingButton'
-
+import Autocomplete from '../components/forms/Autocomplete'
+import ComboBox from '../components/forms/ComboBox'
 import z from 'zod'
+import Switch from '../components/forms/Switch'
+import PasswordInput from '../components/forms/PasswordInput'
+import FileUpload from '../components/forms/FileUpload'
+
+import { useStatesQuery } from '../api/axios'
 
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
@@ -14,11 +19,12 @@ const formSchema = z.object({
     checkbox: z.boolean().refine((val) => val === true, {
         message: 'Checkbox is required',
     }),
+    state: z.array(z.string()).min(1, { message: 'Please select atlease 1 select' }),
+    select: z.string().min(1, { message: 'Select is required' }),
     // amount: z.preprocess(
     //     (val) => (val === null ? undefined : val),
     //     z.number().min(1, 'Age is required and must be a positive number')
     // ),
-
     amount: z.preprocess(
         (val) => (val === null ? undefined : Number(val)),
         z
@@ -28,11 +34,17 @@ const formSchema = z.object({
             ])
             .refine((val) => val !== undefined, { message: 'Amount is required' })
     ),
+    switch: z.boolean().refine((val) => val === true, { message: 'Switch is required' }),
+    password: z.string().min(1, { message: 'Password is required' }),
+    image: z.instanceof(File, { message: 'Image file is required' }),
 })
 
 type FormSchema = z.infer<typeof formSchema>
 
 export default function HomePage() {
+    const { data: states } = useStatesQuery()
+    console.log(states);
+
     const methods = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -40,11 +52,18 @@ export default function HomePage() {
             email: '',
             checkbox: false,
             amount: '',
+            state: ['AK'],
+            select: '',
+            switch: false,
+            password: '',
+            image: '' as unknown as File,
         },
         criteriaMode: 'all',
         mode: 'onChange',
         reValidateMode: 'onChange',
     })
+
+    console.log(methods.formState.errors)
 
     const onSubmit = (data: FormSchema) => {
         console.log(methods.formState.errors)
@@ -53,7 +72,9 @@ export default function HomePage() {
 
     return (
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <h1>Home Page</h1>
+            <Typography variant="h3" sx={{ textAlign: 'center' }} color="primary">
+                Home Page
+            </Typography>
             <Box
                 sx={{
                     display: 'flex',
@@ -84,10 +105,22 @@ export default function HomePage() {
                         placeholder="Enter your email"
                         fullWidth
                     />
+                    <Autocomplete name="state" control={methods.control} label="State" options={states?.data} />
+                    <ComboBox name="select" control={methods.control} label="ComboBox" options={states?.data} />
+
+                    <PasswordInput control={methods.control} name="password" label="Password" fullWidth />
+                    {/* <FileUpload name="image" control={methods.watch} limit={1} multiple={false} /> */}
+                    <FileUpload control={methods.control} limit={1} multiple={false} name="image" label="File Upload" />
                     <Checkbox
                         name="checkbox"
                         control={methods.control}
-                        label="Checkbox"
+                        label="Accept terms and condition"
+                        sx={{ alignSelf: 'flex-start' }}
+                    />
+                    <Switch
+                        name="switch"
+                        control={methods.control}
+                        label="Switch Component"
                         sx={{ alignSelf: 'flex-start' }}
                     />
                     <LoadingButton label="Submit" loading={false} sx={{ width: '200px' }} />
