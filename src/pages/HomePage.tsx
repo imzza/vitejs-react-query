@@ -11,7 +11,7 @@ import Switch from '../components/forms/Switch'
 import PasswordInput from '../components/forms/PasswordInput'
 import FileUpload from '../components/forms/FileUpload'
 import DateInput from '../components/forms/DateInput'
-// import dayjs from "dayjs"
+import dayjs from "dayjs"
 import { useStatesQuery } from '../api/axios'
 
 const formSchema = z.object({
@@ -38,9 +38,9 @@ const formSchema = z.object({
     switch: z.boolean().refine((val) => val === true, { message: 'Switch is required' }),
     password: z.string().min(1, { message: 'Password is required' }),
     image: z.instanceof(File, { message: 'Image file is required' }),
-    // date: z.string().refine((val) => dayjs(val, "YYYY-MM-DD", true).isValid(), {
-    //     message: "Date is required"
-    // }),
+    date: z.string().refine((val) => dayjs(val, "YYYY-MM-DD", true).isValid(), {
+        message: "Date is required"
+    }),
 })
 
 type FormSchema = z.infer<typeof formSchema>
@@ -128,7 +128,7 @@ export default function HomePage() {
                         label="Switch Component"
                         sx={{ alignSelf: 'flex-start' }}
                     />
-                    {/* <DateInput name="date" label="Date Input" control={methods.control} /> */}
+                    <DateInput name="date" fullWidth label="Date Input" control={methods.control} sx={{width: '100%'}} />
 
                     <LoadingButton label="Submit" loading={false} sx={{ width: '200px' }} />
                 </Stack>
