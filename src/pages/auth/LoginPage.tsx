@@ -17,41 +17,27 @@ export default function LoginPage() {
     const { from } = location.state || { from: { pathname: '/' } }
     const loginMutation = useLoginMutation()
 
+    const defaultValues = { email: '', password: '', remember: false }
     const {
         control,
         handleSubmit,
         reset,
         formState: { isSubmitting },
     } = useForm<LoginSchema>({
-        defaultValues: { email: '', password: '', remember: false },
+        defaultValues: defaultValues,
         resolver: zodResolver(loginSchema),
     })
-
-    // useEffect(() => {
-    //     loginMutation.mutate(
-    //         {
-    //             email: 'admin@fusetheme.com',
-    //             password: 'admin',
-    //         },
-    //         {
-    //             onSuccess: (data) => {
-    //                 console.log(`onSuccess Callback: ${JSON.stringify(data)}`)
-    //             },
-    //             onError: (error) => {
-    //                 console.log(`onError Callback: ${JSON.stringify(error)}`)
-    //             },
-    //         }
-    //     )
-    // }, [])
 
     const onSubmit: SubmitHandler<LoginSchema> = async (data: LoginSchema) => {
         loginMutation.mutate(data, {
             onSuccess: (data) => {
                 console.log(`onSuccess Callback: ${JSON.stringify(data)}`)
+                reset(defaultValues)
+
                 navigate(from, { replace: true })
             },
             onError: (error) => {
-                console.log(`onError Callback: ${JSON.stringify(error)}`)
+                console.log(`onError Callback: ${JSON.stringify(error?.response?.data)}`)
             },
         })
 

@@ -22,6 +22,9 @@ const VerifyEmailLandingPage = lazy(() => import('./pages/auth/VeifyEmailLanding
 
 const VerifyEmailCodePage = lazy(() => import('./pages/auth/VerifyEmailCodePage'))
 
+const MFASetupPage = lazy(() => import('./pages/auth/MFASetupPage'))
+const MFAVerifyPage = lazy(() => import('./pages/auth/MFAVerifyPage'))
+
 function Loader() {
     return <p>Loading</p>
 }
@@ -75,6 +78,10 @@ const router = createBrowserRouter(
                             index: true,
                             Component: HomePage,
                         },
+                        {
+                            path: '/setup-mfa',
+                            Component: MFASetupPage,
+                        },
                     ],
                 },
                 {
@@ -107,6 +114,10 @@ const router = createBrowserRouter(
                         {
                             path: '/verify-email',
                             Component: VerifyEmailCodePage,
+                        },
+                        {
+                            path: '/verify-mfa',
+                            Component: MFAVerifyPage,
                         },
                     ],
                 },

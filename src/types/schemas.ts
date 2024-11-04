@@ -23,14 +23,12 @@ export const forgotPasswordSchema = z.object({
 })
 export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>
 
-
 export const verifyEmailCodeSchema = z.object({
     verificationCode: z.string().min(1, 'Verification Code is required'),
     email: z.string().min(1, 'Email is required').email('Email is invalid'),
 })
 
 export type VerifyEmailCodeSchema = z.infer<typeof verifyEmailCodeSchema>
-
 
 // export const resetPasswordSchema = Yup.object().shape({
 //     password: Yup.string().required('Password is required').min(8),

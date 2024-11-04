@@ -11,8 +11,8 @@ import Switch from '../components/forms/Switch'
 import PasswordInput from '../components/forms/PasswordInput'
 import FileUpload from '../components/forms/FileUpload'
 import DateInput from '../components/forms/DateInput'
-import dayjs from "dayjs"
-import { useStatesQuery } from '../api/axios'
+import dayjs from 'dayjs'
+import { useStatesQuery, useAuthUserQuery } from '../api/axios'
 
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
@@ -38,8 +38,8 @@ const formSchema = z.object({
     switch: z.boolean().refine((val) => val === true, { message: 'Switch is required' }),
     password: z.string().min(1, { message: 'Password is required' }),
     image: z.instanceof(File, { message: 'Image file is required' }),
-    date: z.string().refine((val) => dayjs(val, "YYYY-MM-DD", true).isValid(), {
-        message: "Date is required"
+    date: z.string().refine((val) => dayjs(val, 'YYYY-MM-DD', true).isValid(), {
+        message: 'Date is required',
     }),
 })
 
@@ -47,7 +47,11 @@ type FormSchema = z.infer<typeof formSchema>
 
 export default function HomePage() {
     const { data: states } = useStatesQuery()
-    console.log(`States Data: ${JSON.stringify(states)}`);
+    const { data: user, error } = useAuthUserQuery()
+
+    console.log(`User Data: ${JSON.stringify(user)} ${error}`)
+
+    // console.log(`States Data: ${JSON.stringify(states)} `);
 
     const methods = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
@@ -128,7 +132,13 @@ export default function HomePage() {
                         label="Switch Component"
                         sx={{ alignSelf: 'flex-start' }}
                     />
-                    <DateInput name="date" fullWidth label="Date Input" control={methods.control} sx={{width: '100%'}} />
+                    <DateInput
+                        name="date"
+                        fullWidth
+                        label="Date Input"
+                        control={methods.control}
+                        sx={{ width: '100%' }}
+                    />
 
                     <LoadingButton label="Submit" loading={false} sx={{ width: '200px' }} />
                 </Stack>

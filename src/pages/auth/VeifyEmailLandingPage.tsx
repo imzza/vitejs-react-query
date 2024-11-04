@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom'
-import { Typography, Card, CardContent } from "@mui/material"
+import { Typography, Card, CardContent } from '@mui/material'
 
 export default function VerifyEmailLandingPage() {
     const [searchParams] = useSearchParams()
     const location = useLocation()
     const navigate = useNavigate()
     useEffect(() => {
-        const email = searchParams.get("email")
+        const email = searchParams.get('email')
         if (!email) {
-            navigate("/")
+            navigate('/')
         }
         setTimeout(() => {
             navigate(`/verify-email?email=${encodeURIComponent(String(email))}`)
@@ -23,7 +23,8 @@ export default function VerifyEmailLandingPage() {
                     Thanks for Signing Up!
                 </Typography>
                 <Typography sx={{ mb: 1.5, mt: 1, textAlign: 'center' }} color="text.secondary">
-                    A verification email has been sent to the email address you provided. Please verify your email to unlock full site features.
+                    A verification email has been sent to the email address you provided. Please verify your email to
+                    unlock full site features.
                 </Typography>
             </CardContent>
         </Card>

@@ -101,7 +101,7 @@ export default function ForgotPasswordPage() {
                         <Typography variant="body2" color="textSecondary" align="center">
                             To reset your password, enter the email address you use to log in.
                         </Typography>
-                        
+
                         <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
                             <TextInput fullWidth margin="normal" control={control} name="email" label="Email Address" />
                             <LoadingButton

@@ -74,16 +74,15 @@ export const authApiMocks = (mock: MockAdapter) => {
         if (error.length === 0) {
             delete (user as Partial<UserAuthType>).password
 
-            const access_token = generateJWTToken({ id: user?.uid })
-
+            const access_token = generateJWTToken({ id: user?.uid, token_type: 'access' })
+            const refresh_token = generateJWTToken({ id: user?.uid, token_type: 'refresh' })
             const response = {
-                user,
-                access_token,
+                // user,
+                accessToken: access_token,
+                refreshToken: refresh_token,
             }
-
             return [200, response]
         }
-
         return [400, error]
     })
 
@@ -321,7 +320,7 @@ export const authApiMocks = (mock: MockAdapter) => {
         // Define token payload
         const payload: unknown = {
             iat,
-            iss: 'Fuse',
+            iss: 'iux',
             exp,
             ...tokenPayload,
         }

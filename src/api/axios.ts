@@ -14,6 +14,7 @@ export const api = axios.create({
         },
     },
 })
+
 // https://github.com/codegenixdev/react-hook-form-mui-zod-boilerplate/blob/main/src/users/services/mutations.ts
 
 // Dynamic Forms
@@ -57,12 +58,12 @@ export const api = axios.create({
 // }
 
 type State = {
-    label: string, 
+    label: string
     value: string
 }
 
 export const getStates = (): Promise<State[]> => {
-    return api.get('/mock-api/states').then(response => response.data)
+    return api.get('/mock-api/states').then((response) => response.data)
 }
 
 export const useStatesQuery = () => {
@@ -72,11 +73,34 @@ export const useStatesQuery = () => {
     })
 }
 
+interface LoginRequest {
+    email: string
+    password: string
+    remember?: boolean
+}
+
+interface LoginResponse {
+    accessToken: string
+    refreshToken: string
+    user?: any
+}
+
+interface MFARequiredResponse {
+    sessionToken: string
+}
+
+interface MFAVerifyRequest {
+    sessionToken: string
+    verificationToken: string
+}
+
+export const loginUser = (data: LoginRequest): Promise<LoginResponse | MFARequiredResponse> => {
+    return api.post('/mock-api/auth/sign-in', data).then((response) => response.data)
+}
+
 export const useLoginMutation = () => {
     return useMutation({
-        mutationFn: (data: any) => {
-            return api.post('/mock-api/auth/sign-in', data)
-        },
+        mutationFn: loginUser,
         onSuccess: (data) => {
             console.log(`onSuccess default Callback: ${JSON.stringify(data)}`)
         },
@@ -113,6 +137,14 @@ export const useVerifyEmailMutation = () => {
     })
 }
 
+export const useAuthUserQuery = () => {
+    return useQuery({
+        queryKey: ['auth-user'],
+        queryFn: () => {
+            return api.get('/mock-api/auth/user')
+        },
+    })
+}
 
 export const useForgotPasswordMutation = () => {
     return useMutation({
